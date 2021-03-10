@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NoticePanel">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textSize="15dp"
+        android:background="#FF0000"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+
+        android:id="@+id/loginInfo"></TextView>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="60dp"
+        android:id="@+id/img"
+        android:src="@drawable/pcmc"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"></ImageView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NOTICE 478/सूचना 478"
+        android:onClick="n1"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/img"
+        android:id="@+id/n1"></Button>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="n2"
+        android:layout_centerHorizontal="true"
+        android:text="NOTICE KALAM 53/सूचना कळम 53"
+        android:layout_below="@+id/n1"
+        android:id="@+id/n2"></Button>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="n3"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/n2"
+        android:text="NOTICE KALAM 53 -1A/सूचना कळम 53 -1A"
+        android:id="@+id/n3"></Button>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="n4"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/n3"
+        android:text="NOTICE KALAM 55/सूचना कळम 55"
+        android:id="@+id/n4"></Button>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/n4"
+        android:onClick="n5"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:text="FIR/एफआयआर"
+        android:id="@+id/n5"></Button>
+
+    <Button
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/n5"
+
+        android:onClick="exit"
+        android:id="@+id/exit"
+
+        android:text="Exit"></Button>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="290dp"
+        android:onClick="Logout"
+        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/logout"
+        android:background="#FF0D59"
+        android:layout_below="@+id/n5"
+        android:text="Logout"></Button>
+
+
+</RelativeLayout>
