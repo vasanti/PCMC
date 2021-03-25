@@ -65,13 +65,26 @@
         android:id="@+id/n4"></Button>
     <Button
         android:layout_width="wrap_content"
-        android:layout_below="@+id/n4"
-        android:onClick="n5"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:text="FIR/एफआयआर"
-        android:id="@+id/n5"></Button>
+        android:text="FIR"
+        android:onClick="n5"
+        android:visibility="invisible"
+        android:id="@+id/n5"
+        android:layout_below="@+id/n4"
+        android:layout_centerHorizontal="true"
+        ></Button>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:onClick="n6"
+        android:layout_marginTop="10dp"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/n5"
+        android:layout_height="wrap_content"
+        android:text="Evacuation/निर्वासन"
+        android:id="@+id/n6"></Button>
 
     <Button
         android:layout_marginTop="80dp"
@@ -82,7 +95,6 @@
 
         android:onClick="exit"
         android:id="@+id/exit"
-
         android:text="Exit"></Button>
     <Button
         android:layout_width="wrap_content"
@@ -92,9 +104,10 @@
         android:layout_marginRight="20dp"
         android:layout_height="wrap_content"
         android:id="@+id/logout"
-        android:background="#FF0D59"
         android:layout_below="@+id/n5"
         android:text="Logout"></Button>
+
+
 
 
 </RelativeLayout>

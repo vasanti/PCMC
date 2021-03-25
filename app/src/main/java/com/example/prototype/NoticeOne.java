@@ -1,19 +1,20 @@
 package com.example.prototype;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.AssetManager;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,28 +22,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Random;
+
 
 public class NoticeOne extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     EditText t10,t11,t12,t13;
     Button submit;
-    File file;
-    String sp1,sp2,sp3;
-    OutputStream outputStream;
-
-
+    String sp1,sp2,sp3,sp4;
+    Intent intent;
 
     //dropdown
     String[] users = { "श्री.", "श्रीमती"};
@@ -54,29 +51,125 @@ public class NoticeOne extends AppCompatActivity implements AdapterView.OnItemSe
             "आर सी सी बांधकाम (तळमजला व पहिला मजला)"};
 
     String[] type1={"अ","ब","क","ड","ई","फ","ह","ग"};
+    String[] daytype={"दिवसांच्या","महिन्याच्या","तासांच्या"};
 
     //dropdownend
 
     //camera
     private static int IMG_RESULT = 1;
     String ImageDecode;
-    ImageView imageViewLoad,imageViewLoad1,imageViewLoad2,imageViewLoad3;
-    Button LoadImage,LoadImage1,LoadImage2,LoadImage3;
-    Intent intent;
-    String[] FILE;
-    String camerastate="";
+
+    String cameras1 ="";
+    String cameras2 ="";
+    String cameras3 ="";
+    String cameras4 ="";
+    private final int SELECT_PHOTO1 = 1;
+    private final int SELECT_PHOTO2 = 2;
+    private final int SELECT_PHOTO3 = 3;
+    private final int SELECT_PHOTO4 = 4;
+
+    String p21;
+    String p4,p14,p10,p11,p12,p13,p15,p16,p17,p18,p2;
+
+
+    //image save
+    private static final int PERMISSION_REQUEST_CODE = 100;
+    Button save1;
+    Button capture1,capture2,capture3,capture4;
+    Bitmap bitmap;
+
+
+    ImageView imageView,imageView2,imageView3,imageView4;
+    //image save end
+
 
     //cameraend
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice_one);
-        submit=(Button) findViewById(R.id.Submit);
-        ///
 
+
+
+        //image
+
+        imageView = (ImageView) findViewById(R.id.img1);
+        imageView2 = (ImageView) findViewById(R.id.img2);
+        imageView3 = (ImageView) findViewById(R.id.img3);
+        imageView4 = (ImageView) findViewById(R.id.img4);
+
+        capture1 = (Button) findViewById(R.id.capture1);
+
+        capture2 = (Button) findViewById(R.id.capture2);
+
+        capture3 = (Button) findViewById(R.id.capture3);
+
+        capture4 = (Button) findViewById(R.id.capture4);
+
+
+        capture1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                cameras1="cam1";
+
+                Intent cameraIntent=new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, SELECT_PHOTO1);
+
+
+            }
+        });
+
+        capture2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cameras2="cam2";
+
+                Intent cameraIntent=new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, SELECT_PHOTO2);
+
+            }
+        });
+
+
+        capture3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cameras3="cam3";
+
+                Intent cameraIntent=new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, SELECT_PHOTO3);
+
+            }
+        });
+
+        capture4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cameras4="cam4";
+
+                Intent cameraIntent=new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, SELECT_PHOTO4);
+
+            }
+        });
+
+
+        //image
+
+        //submitt end button
+        submit=(Button) findViewById(R.id.Submit);
+        Button back=(Button) findViewById(R.id.back1);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+                Intent Fir   = new Intent(NoticeOne.this,NoticePanel.class);
+                startActivity(Fir);
+            }
+        });
+        ///
             submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -85,13 +178,12 @@ public class NoticeOne extends AppCompatActivity implements AdapterView.OnItemSe
                     String p1=t1.getText().toString();
 
                     EditText t2=(EditText) findViewById(R.id.t2);
-                    String p2=t2.getText().toString();
-
+                    p2=t2.getText().toString();
 
                     String p3=sp1;
 
                     EditText t4=(EditText) findViewById(R.id.t4);
-                    String p4=t4.getText().toString();
+                    p4=t4.getText().toString();
 
                     EditText t5=(EditText) findViewById(R.id.t5);
                     String p5=t2.getText().toString();
@@ -109,56 +201,55 @@ public class NoticeOne extends AppCompatActivity implements AdapterView.OnItemSe
                     String p9=t9.getText().toString();
 
                     EditText t10=(EditText) findViewById(R.id.t10);
-                    String p10=t10.getText().toString();
+                    p10=t10.getText().toString();
 
                     EditText t11=(EditText) findViewById(R.id.t11);
-                    String p11=t11.getText().toString();
+                    p11=t11.getText().toString();
 
                     EditText t12=(EditText) findViewById(R.id.t12);
-                    String p12=t12.getText().toString();
+                    p12=t12.getText().toString();
 
                     EditText t13=(EditText) findViewById(R.id.t13);
-                    String p13=t13.getText().toString();
+                    p13=t13.getText().toString();
 
-                    String p14=sp2;
+                    p14=sp2;
 
                     EditText t15=(EditText) findViewById(R.id.t15);
-                    String p15=t15.getText().toString();
+                    p15=t15.getText().toString();
 
                     EditText t16=(EditText) findViewById(R.id.t16);
-                    String p16=t16.getText().toString();
+                    p16=t16.getText().toString();
 
                     EditText t17=(EditText) findViewById(R.id.t17);
-                    String p17=t17.getText().toString();
+                    p17=t17.getText().toString();
 
                     EditText t18=(EditText) findViewById(R.id.t18);
-                    String p18=t18.getText().toString();
-
+                    p18=t18.getText().toString();
 
                     String p19=sp3;
 
                     EditText t20=(EditText) findViewById(R.id.t20);
                     String p20=t20.getText().toString();
 
+
                     EditText t21=(EditText) findViewById(R.id.t21);
-                    String p21=t21.getText().toString();
+                    p21=t21.getText().toString();
 
 
 
 
+                    String p22=sp4;
+
+                    EditText t23=(EditText) findViewById(R.id.days1);
+                    String p23=t23.getText().toString();
 
                    // Toast.makeText(NoticeOne.this,p1+p2+p3+p4+p5+p8,Toast.LENGTH_SHORT).show();
-
-
-
                     try {
 
-
-
-
                         ContentValues values = new ContentValues();
+                        String filename="सूचना478_"+p21;
                         String folder="/"+"PCM_APP"+"/"+p21+"/";
-                        values.put(MediaStore.MediaColumns.DISPLAY_NAME, p21);       //file name
+                        values.put(MediaStore.MediaColumns.DISPLAY_NAME, filename);       //file name
                         values.put(MediaStore.MediaColumns.MIME_TYPE, "application/msword");        //file extension, will automatically add to file
                         values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS + folder);     //end "/" is not mandatory
 
@@ -167,25 +258,22 @@ public class NoticeOne extends AppCompatActivity implements AdapterView.OnItemSe
                         OutputStream outputStream = getContentResolver().openOutputStream(uri);
 
                         String a="sameet";
-                        
 
-                        outputStream.write(( "\t\t\t\t        पिंपरी चिंचवड महानगरपालिका पिंपरी, पुणे -४११०१८\n\t\t\t\t        कार्यकारी अभियंता तथा पदनिर्देशित अधिकारी\n\t\t\t\t        बांधकाम परवानगी व अनधिकृत बांधकाम नियंत्रण विभाग" +
-                                "\n\t\t\t\t        जा.क्र. बीपी / दि.बो. / प्र.क्र.०४ / "+p1+"   / २०२०\n\t\t\t               दिनांक -"+ p2 +
-                                "\n\n\t\t\t\t\t         " +
-                                "\n" +
-                                "\t\t\t\t\t\tसूचना" +
-                                "\n\n" +
-                                "प्रति," +
-                                "\n" +
-                                "\tमालक / विकसक / ऑक्युपायर :-\n" +
-                                "\t"+p3+" -"+p21+"\n" +
-                                "\tपत्ता :- "+p4+" \n" +
-                                "\t\t          " +
-                                "\n\n" +
-                                "       \n\n   महाराष्ट्र महानगरपालिका अधिनियम चे कलम ४७८(१), कलम ४३३(क) अन्वये सूचना देण्यात येते की  " +
+                        outputStream.write(("\t\t\t\t\t\t\t पिंपरी चिंचवड महानगरपालिका\n\t\t\t\t" +
+                                "\t\t\t पिंपरी पुणे – "+p20+"\n\t\t\t\t" +
+                                "\t\t\t बांधकाम परवानगी  व अनधिकृत \n\t\t\t\t" +
+                                "\t\t\t बांधकाम नियंत्रण विभाग \n\t\t\t\t" +
+                                "\t\t\t "+p1+" \n\t\t\t\t" +
+                                "\t\t\t दिनांक -"+ p2 +
+                                "\n\n\t\t\t\t\t\tसूचना" +
+                                "\n\nप्रति,"+
+                                "\n\tमालक / विकसक / ऑक्युपायर :-" +
+                                "\n\t"+p3+" -"+p21+"" +
+                                "\n\tपत्ता :- "+p4+" \n" +
+                                "       \n   महाराष्ट्र महानगरपालिका अधिनियम चे कलम ४७८(१), कलम ४३३(क) अन्वये सूचना देण्यात येते की  " +
                                 "तुम्ही पिंपरी चिंचवड महानगरपालिकेची बांधकाम परवानगी न घेता बिगर परवाना अनधिकृत बांधकाम केलेचे  " +
                                 "निदर्शनास आले आहे. सदर बिगर परवाना अनधिकृत बांधकामाची माहिती खालीलप्रमाणे :-  \n\n" +
-                                "गाव  –  "+p5+"          मोजे  –  "+p6+"       ता. –  "+p7+"        जि. पुणे\n" +
+                                "\nगाव  –  "+p5+"          मोजे  –  "+p6+"       ता. –  "+p7+"        जि. पुणे\n" +
                                 "ठिकाण  –  "+p8+" \n" +
                                 "स.नं. / सि.टी.स.नं. / गट नं. – "+p9+"\n" +
                                 "बांधकामाचे मोजमाप – अंदाजे "+p10+" मी. X "+p11+" मी. X "+p12+" मजले = "+p13+" चौ.मी.\n" +
@@ -195,17 +283,17 @@ public class NoticeOne extends AppCompatActivity implements AdapterView.OnItemSe
                                 "\tपश्चिमेस   –   "+p16+"\n" +
                                 "\tदक्षिणेस   –   "+p17+"\n" +
                                 "\tउत्तरेस    –   "+p18+"\n\n" +
-                                "\n\n     आपण केलेले सर्व बांधकाम अनधिकृत आहे. सदरचे वरीलप्रमाणे केलेले अनधिकृत बांधकाम तुम्ही ही सूचना पोहोचविल्यापासून ०१ दिवसांच्या " +
+                                "    आपण केलेले सर्व बांधकाम अनधिकृत आहे. सदरचे वरीलप्रमाणे केलेले अनधिकृत बांधकाम तुम्ही ही सूचना पोहोचविल्यापासून "+p23+" "+p22+" " +
                                 "आत काढून टाकावे. वेळ प्रसंग पडल्यास प्रत्यक्ष कारवाईच्या वेळी सदरच्या बांधकामाच्या जागेवर भरतील ती व असतील ती स्थितीप्रमाणे, त्यासहचे सर्व बांधकाम याप्रमाणे" +
                                 " तुम्ही बिगर परवाना बांधकाम काढून टाकण्याची व्यवस्था न केल्यास ते बांधकाम आम्ही काढून टाकू, त्याबाबत होणारा खर्च तुमच्याकडून वसूल करण्यात येईल. तसेच सदरच्या " +
-                                "सूचनेबाबत आपल्याकडील कोणताही खुलासा/ पत्र ग्राहय धरता येणार नाही.\n\n\n" +
-                                "\tसदरचे अनधिकृत/बिगर परवाना बांधकामाबाबत महाराष्ट्र महानगरपालिका अधिनियम चे कलम २६१, २६४, २६७ आणि ४७८ मधील तरतुदीनुसार मा. आयुक्त यांचे आदेश क्रमांक " +
+                                "सूचनेबाबत आपल्याकडील कोणताही खुलासा/ पत्र ग्राहय धरता येणार नाही.\n" +
+                                "\t  सदरचे अनधिकृत/बिगर परवाना बांधकामाबाबत महाराष्ट्र महानगरपालिका अधिनियम चे कलम २६१, २६४, २६७ आणि ४७८ मधील तरतुदीनुसार मा. आयुक्त यांचे आदेश क्रमांक " +
                                 "अति/३/कावि/१००/२०१२ दि.१६/६/२०१२अन्वये पदनिर्देशित" +
-                                " अधिकारी म्हणुन कारवाई करण्याचे आधिकारी आम्हाला आहेत याची नोंद घ्यावी.\n" +
-                                "\t\t\t\t\t\t                   पदनिर्देशित अधिकारी तथा \n" +
-                                "\t\t\t\t\t\t          कार्यकारी अभियंता ( ‘"+p19+" ’ क्षेत्रिय कार्यालय ) \n" +
+                                " अधिकारी म्हणुन कारवाई करण्याचे आधिकारी आम्हाला आहेत याची नोंद घ्यावी.\n\n\n\n" +
+                                "\t\t\t\t\t\t               पदनिर्देशित अधिकारी तथा \n" +
+                                "\t\t\t\t\t\t         कार्यकारी अभियंता ( ‘"+p19+" ’ क्षेत्रिय कार्यालय ) \n" +
                                 "\t\t\t\t           बांधकाम परवानगी व अनधिकृत बांधकाम नियंत्रण विभाग\n" +
-                                "  \t\t\t\t\t    पिंपरी चिंचवड महानगरपालिका, पिंपरी, पुणे– "+p20+"").getBytes());
+                                "  \t\t\t\t\t   पिंपरी चिंचवड महानगरपालिका, पिंपरी, पुणे– "+p20+"").getBytes());
 
                         outputStream.close();
 
@@ -213,16 +301,276 @@ public class NoticeOne extends AppCompatActivity implements AdapterView.OnItemSe
                     } catch (IOException e) {
                         Toast.makeText(NoticeOne.this, "Fail to create file", Toast.LENGTH_SHORT).show();
                     }
+
+
+                    ///camera start
+                    if(cameras1.equals("cam1"))
+                    {
+                        //Drawable drawable = getResources().getDrawable(R.drawable.sam);
+                        Drawable drawable=imageView.getDrawable();
+
+                        bitmap = ((BitmapDrawable)drawable).getBitmap();
+
+                        String state = Environment.getExternalStorageState();
+                        if (Environment.MEDIA_MOUNTED.equals(state)) {
+                            if (Build.VERSION.SDK_INT >= 23) {
+                                if (checkPermission()) {
+                                    String path = Environment.getExternalStorageDirectory().toString();
+                                    Random random = new Random();
+                                    int x = random.nextInt(6000);
+
+                                    File file = new File(path, "/documents/PCM_APP/"+p21+"/"+p21+x+".jpg");
+                                    if (!file.exists()) {
+                                        Log.d("path", file.toString());
+                                        try {
+                                            FileOutputStream fos = new FileOutputStream(file);
+                                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                                            fos.flush();
+                                            fos.close();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                } else {
+                                    requestPermission(); // Code for permission
+                                }
+                            } else {
+                                String path = Environment.getExternalStorageDirectory().toString();
+                                Random random = new Random();
+                                int x = random.nextInt(6000);
+                                File file = new File(path, "/documents/PCM_APP/"+p21+"/"+p21+x+".jpg");
+                                if (!file.exists()) {
+                                    Log.d("path", file.toString());
+                                    FileOutputStream fos = null;
+                                    try {
+                                        fos = new FileOutputStream(file);
+                                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                                        fos.flush();
+                                        fos.close();
+                                    } catch (java.io.IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                    //cam2
+                    if(cameras2.equals("cam2"))
+                    {
+                        Drawable drawable1=imageView2.getDrawable();
+
+                        bitmap = ((BitmapDrawable)drawable1).getBitmap();
+
+                        String state1 = Environment.getExternalStorageState();
+                        if (Environment.MEDIA_MOUNTED.equals(state1)) {
+                            if (Build.VERSION.SDK_INT >= 23) {
+                                if (checkPermission()) {
+                                    String path = Environment.getExternalStorageDirectory().toString();
+                                    Random random = new Random();
+                                    int x = random.nextInt(6000);
+
+                                    File file = new File(path, "/documents/PCM_APP/"+p21+"/"+p21+x+".jpg");
+                                    if (!file.exists()) {
+                                        Log.d("path", file.toString());
+                                        try {
+                                            FileOutputStream fos = new FileOutputStream(file);
+                                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                                            fos.flush();
+                                            fos.close();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                } else {
+                                    requestPermission(); // Code for permission
+                                }
+                            } else {
+                                String path = Environment.getExternalStorageDirectory().toString();
+                                Random random = new Random();
+                                int x = random.nextInt(6000);
+                                File file = new File(path, "/documents/PCM_APP/"+p21+"/"+p21+x+".jpg");
+                                if (!file.exists()) {
+                                    Log.d("path", file.toString());
+                                    FileOutputStream fos = null;
+                                    try {
+                                        fos = new FileOutputStream(file);
+                                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                                        fos.flush();
+                                        fos.close();
+                                    } catch (java.io.IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }
+                        //
+
+                    }
+                    //Drawable drawable = getResources().getDrawable(R.drawable.sam);
+
+                    if(cameras3.equals("cam3"))
+                    {
+
+                        Drawable drawable2=imageView3.getDrawable();
+
+                        bitmap = ((BitmapDrawable)drawable2).getBitmap();
+
+                        String state2 = Environment.getExternalStorageState();
+                        if (Environment.MEDIA_MOUNTED.equals(state2)) {
+                            if (Build.VERSION.SDK_INT >= 23) {
+                                if (checkPermission()) {
+                                    String path = Environment.getExternalStorageDirectory().toString();
+                                    Random random = new Random();
+                                    int x = random.nextInt(6000);
+
+                                    File file = new File(path, "/documents/PCM_APP/"+p21+"/"+p21+x+".jpg");
+                                    if (!file.exists()) {
+                                        Log.d("path", file.toString());
+                                        try {
+                                            FileOutputStream fos = new FileOutputStream(file);
+                                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                                            fos.flush();
+                                            fos.close();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                } else {
+                                    requestPermission(); // Code for permission
+                                }
+                            } else {
+                                String path = Environment.getExternalStorageDirectory().toString();
+                                Random random = new Random();
+                                int x = random.nextInt(6000);
+                                File file = new File(path, "/documents/PCM_APP/"+p21+"/"+p21+x+".jpg");
+                                if (!file.exists()) {
+                                    Log.d("path", file.toString());
+                                    FileOutputStream fos = null;
+                                    try {
+                                        fos = new FileOutputStream(file);
+                                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                                        fos.flush();
+                                        fos.close();
+                                    } catch (java.io.IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                    //Drawable drawable = getResources().getDrawable(R.drawable.sam);
+
+                    ///
+                    if(cameras4.equals("cam4"))
+                    {
+                        Drawable drawable3=imageView4.getDrawable();
+
+                        bitmap = ((BitmapDrawable)drawable3).getBitmap();
+
+                        String state3 = Environment.getExternalStorageState();
+                        if (Environment.MEDIA_MOUNTED.equals(state3)) {
+                            if (Build.VERSION.SDK_INT >= 23) {
+                                if (checkPermission()) {
+                                    String path = Environment.getExternalStorageDirectory().toString();
+                                    Random random = new Random();
+                                    int x = random.nextInt(6000);
+
+                                    File file = new File(path, "/documents/PCM_APP/"+p21+"/"+p21+x+".jpg");
+                                    if (!file.exists()) {
+                                        Log.d("path", file.toString());
+                                        try {
+                                            FileOutputStream fos = new FileOutputStream(file);
+                                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                                            fos.flush();
+                                            fos.close();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                } else {
+                                    requestPermission(); // Code for permission
+                                }
+                            } else {
+                                String path = Environment.getExternalStorageDirectory().toString();
+                                Random random = new Random();
+                                int x = random.nextInt(6000);
+                                File file = new File(path, "/documents/PCM_APP/"+p21+"/"+p21+x+".jpg");
+                                if (!file.exists()) {
+                                    Log.d("path", file.toString());
+                                    FileOutputStream fos = null;
+                                    try {
+                                        fos = new FileOutputStream(file);
+                                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                                        fos.flush();
+                                        fos.close();
+                                    } catch (java.io.IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }
+
+
+                    }
+
+
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(NoticeOne.this);
+                    alertDialogBuilder.setMessage("Do You Want To Fill FIR");
+
+                    alertDialogBuilder.setPositiveButton("yes",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent Fir   = new Intent(NoticeOne.this,NoticeFive.class);
+                                    Fir.putExtra("name",p21);
+                                    Fir.putExtra("address",p4);
+
+                                    Fir.putExtra("typeB",p14);
+
+                                    Fir.putExtra("m1",p10);
+                                    Fir.putExtra("m2",p11);
+                                    Fir.putExtra("m3",p12);
+                                    Fir.putExtra("cal",p13);
+
+                                    Fir.putExtra("c1",p15);
+                                    Fir.putExtra("c2",p16);
+                                    Fir.putExtra("c3",p17);
+                                    Fir.putExtra("c4",p18);
+
+                                    Fir.putExtra("D1",p2);
+
+                                    startActivity(Fir);
+                                }
+                            });
+
+                    alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+
+
+
+
+
                 }
             });
 
-        //
+//submitt end button end
 
         //spinnerdropdown
 
         Spinner spin = (Spinner) findViewById(R.id.t3);
         Spinner spin2=(Spinner) findViewById(R.id.t14);
         Spinner spin3=(Spinner)findViewById(R.id.t19);
+        Spinner spin4=(Spinner)findViewById(R.id.days2);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, users);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -237,10 +585,15 @@ public class NoticeOne extends AppCompatActivity implements AdapterView.OnItemSe
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin3.setAdapter(adapter3);
 
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, daytype);
+        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin4.setAdapter(adapter4);
+
 
         spin.setOnItemSelectedListener(NoticeOne.this);
         spin2.setOnItemSelectedListener(this);
         spin3.setOnItemSelectedListener(this);
+        spin4.setOnItemSelectedListener(this);
 
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -251,6 +604,22 @@ public class NoticeOne extends AppCompatActivity implements AdapterView.OnItemSe
                 sp1=users[position];
 
                // Toast.makeText(getApplicationContext(), "Selected User: "+users[position] , Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spin4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+
+                sp4=daytype[position];
+
+                // Toast.makeText(getApplicationContext(), "Selected User: "+users[position] , Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -274,16 +643,13 @@ public class NoticeOne extends AppCompatActivity implements AdapterView.OnItemSe
             }
         });
 
-
         spin3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-
                 sp3=type1[position];
                 //Toast.makeText(getApplicationContext(), "Selected types: "+type1[position] , Toast.LENGTH_SHORT).show();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // TODO Auto-generated method stub
@@ -292,19 +658,11 @@ public class NoticeOne extends AppCompatActivity implements AdapterView.OnItemSe
 
     //spinnerenddropdown
 
-
-
-
-
-
-
-
 //calculation
         t10=(EditText)findViewById(R.id.t10);
         t11=(EditText)findViewById(R.id.t11);
         t12=(EditText)findViewById(R.id.t12);
         t13=(EditText)findViewById(R.id.t13);
-
 
          t13.setOnFocusChangeListener(new View.OnFocusChangeListener() {
              @Override
@@ -318,164 +676,117 @@ public class NoticeOne extends AppCompatActivity implements AdapterView.OnItemSe
                          int res = v1 * v2 * v3;
                          String result = String.valueOf(res);
 
-
                          t13.setText(result);
                          t13.setEnabled(false);
                      }
-
                  }catch (Exception e){
                      Toast.makeText(NoticeOne.this, "Please try again", Toast.LENGTH_LONG).show();
                  }
-
-
              }
          });
-     //calculationend
-        //camera1
+         //calculationend
 
-        imageViewLoad = (ImageView) findViewById(R.id.cam1);
-        LoadImage = (Button)findViewById(R.id.bcam1);
-        LoadImage.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                camerastate="cam1";
-                intent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-                startActivityForResult(intent, IMG_RESULT);
-
-
-            }
-        });
-
-        imageViewLoad1 = (ImageView) findViewById(R.id.cam2);
-        LoadImage1 = (Button)findViewById(R.id.bcam2);
-        LoadImage1.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                camerastate="cam2";
-                intent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-                startActivityForResult(intent, IMG_RESULT);
-
-            }
-        });
-
-        imageViewLoad2 = (ImageView) findViewById(R.id.cam3);
-        LoadImage2 = (Button)findViewById(R.id.bcam3);
-        LoadImage2.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                camerastate="cam3";
-                intent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-
-                startActivityForResult(intent, IMG_RESULT);
-
-
-
-
-            }
-        });
-
-        imageViewLoad3 = (ImageView) findViewById(R.id.cam4);
-        LoadImage3 = (Button)findViewById(R.id.bcam4);
-        LoadImage3.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                camerastate="cam4";
-                intent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-                startActivityForResult(intent, IMG_RESULT);
-
-
-            }
-        });
 
     }
+
+
+    //camera start
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(NoticeOne.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void requestPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(NoticeOne.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(NoticeOne.this, "Write External Storage permission allows us to save files. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(NoticeOne.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.e("value", "Permission Granted, Now you can use local drive .");
+                } else {
+                    Log.e("value", "Permission Denied, You cannot use local drive .");
+                }
+                break;
+        }
+
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        try {
-
-
-            if (requestCode == IMG_RESULT && resultCode == RESULT_OK
-                    && null != data) {
-
-
-                Uri URI = data.getData();
-                String[] FILE = { MediaStore.Images.Media.DATA };
-
-
-                Cursor cursor = getContentResolver().query(URI,
-                        FILE, null, null, null);
-
-                cursor.moveToFirst();
-
-                int columnIndex = cursor.getColumnIndex(FILE[0]);
-                ImageDecode = cursor.getString(columnIndex);
-                cursor.close();
-
-
-                if(camerastate.equals("cam1")) {
-                    imageViewLoad.setImageBitmap(BitmapFactory
-                            .decodeFile(ImageDecode));
-                    String path1=URI.getEncodedPath();
-
-                    //
 
 
 
-                    //
 
+            if(requestCode==1)
+            {
 
-                }
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+                imageView.setImageBitmap(photo);
+                BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
 
-                if(camerastate.equals("cam2")) {
-
-                    imageViewLoad1.setImageBitmap(BitmapFactory
-                            .decodeFile(ImageDecode));
-
-
-                }
-                if(camerastate.equals("cam3")) {
-                    imageViewLoad2.setImageBitmap(BitmapFactory
-                            .decodeFile(ImageDecode));
-
-
-                }
-
-                if(camerastate.equals("cam4")) {
-                    imageViewLoad3.setImageBitmap(BitmapFactory
-                            .decodeFile(ImageDecode));
-                }
             }
-        } catch (Exception e) {
-            Toast.makeText(this, "Please try again", Toast.LENGTH_LONG)
-                    .show();
+
+
+        if(requestCode==2)
+        {
+
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            imageView2.setImageBitmap(photo);
+            BitmapDrawable drawable = (BitmapDrawable) imageView2.getDrawable();
+
         }
-}
+
+
+        if(requestCode==3)
+        {
+
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            imageView3.setImageBitmap(photo);
+            BitmapDrawable drawable = (BitmapDrawable) imageView3.getDrawable();
+
+        }
+
+
+        if(requestCode==4)
+        {
+
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            imageView4.setImageBitmap(photo);
+            BitmapDrawable drawable = (BitmapDrawable) imageView4.getDrawable();
+
+        }
+
+
+    }
+
+    //cameraend
+
+
+
+//spinner method
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
     }
-
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
 
+
+
+//spinner method end
 }
+

@@ -21,41 +21,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="FIR"
+                android:text="जबाब"
                 android:textAlignment="center"
                 android:background="@android:color/holo_red_dark"
                 android:textColor="@color/white"
                 android:layout_marginBottom="30dp"
                 android:textSize="25dp"
                 ></TextView>
-
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_orange_dark"
-                    android:text="जा.क्र. बीपी/प्र.क्र"></TextView>
-
-                <EditText
-                    android:id="@+id/t1"
-                    android:layout_width="260dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="14dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/rounded_border_edittext"
-                    android:paddingLeft="10dp"
-                    android:text="जा.क्र. बीपी / ? / प्र.क्र. ? / ? / २०२०"
-                    android:textAlignment="center"></EditText>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -70,16 +42,16 @@
                     android:text="दिनांक -"></TextView>
 
                 <EditText
-                    android:id="@+id/t2"
                     android:layout_width="260dp"
-                    android:layout_height="50dp"
                     android:layout_marginLeft="64dp"
+                    android:id="@+id/t1"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/rounded_border_edittext"
                     android:hint="दिनांक"
+                    android:textAlignment="center"
+                    android:layout_marginBottom="15dp"
                     android:paddingLeft="10dp"
-                    android:textAlignment="center"></EditText>
+                    android:background="@drawable/rounded_border_edittext"
+                    android:layout_height="50dp"></EditText>
             </LinearLayout>
 
             <LinearLayout
@@ -93,7 +65,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/holo_orange_dark"
-                    android:text="पोलिस निरीक्षक नाव - "></TextView>
+                    android:text="कनिष्ठ कर्मचारी नामे  - "></TextView>
 
 
             </LinearLayout>
@@ -104,16 +76,106 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/t3"
+                    android:layout_width="260dp"
+                    android:layout_marginLeft="74dp"
+                    android:id="@+id/t2"
+                    android:layout_marginRight="10dp"
+                    android:textAlignment="center"
+                    android:text="श्री. किरण अरुण सगर"
+                    android:layout_marginBottom="15dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/rounded_border_edittext"
+                    android:layout_height="50dp"></EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/t22"
                     android:layout_width="260dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="74dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded_border_edittext"
-                    android:hint="- ?  पोलिस स्टेशन"
+                    android:hint="वय"
                     android:paddingLeft="10dp"
                     android:textAlignment="center"></EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="260dp"
+                    android:layout_marginLeft="74dp"
+                    android:id="@+id/t222"
+                    android:layout_marginRight="10dp"
+                    android:textAlignment="center"
+                    android:hint="(कनिष्ठ अभियंता) "
+                    android:layout_marginBottom="15dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/rounded_border_edittext"
+                    android:layout_height="50dp"></EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="260dp"
+                    android:layout_marginLeft="74dp"
+                    android:id="@+id/t3"
+                    android:layout_marginRight="10dp"
+                    android:textAlignment="center"
+                    android:text="श्री. कानडे जयराम मच्छिंद्र "
+                    android:layout_marginBottom="15dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/rounded_border_edittext"
+                    android:layout_height="50dp"></EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="260dp"
+                    android:layout_marginLeft="74dp"
+                    android:id="@+id/t33"
+                    android:layout_marginRight="10dp"
+                    android:textAlignment="center"
+                    android:hint="वय"
+                    android:layout_marginBottom="15dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/rounded_border_edittext"
+                    android:layout_height="50dp"></EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="260dp"
+                    android:layout_marginLeft="74dp"
+                    android:id="@+id/t333"
+                    android:layout_marginRight="10dp"
+                    android:textAlignment="center"
+                    android:hint=" (स्था.अ.सहाय्यक / बीट निरीक्षक)"
+                    android:layout_marginBottom="15dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/rounded_border_edittext"
+                    android:layout_height="50dp"></EditText>
             </LinearLayout>
 
 
@@ -132,150 +194,9 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:layout_width="260dp"
-                    android:layout_marginLeft="72dp"
-                    android:id="@+id/t4"
-                    android:layout_marginRight="10dp"
-                    android:textAlignment="center"
-                    android:text="श्री. हेमंत प्रभाकर देसाई"
-                    android:layout_marginBottom="15dp"
-                    android:paddingLeft="10dp"
-                    android:background="@drawable/rounded_border_edittext"
-                    android:layout_height="50dp"></EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_orange_dark"
-                    android:text="वय -"></TextView>
-
-                <EditText
-                    android:layout_width="260dp"
-                    android:layout_marginLeft="64dp"
-                    android:id="@+id/t5"
-                    android:layout_marginRight="10dp"
-                    android:hint="वय"
-                    android:textAlignment="center"
-                    android:layout_marginBottom="15dp"
-                    android:paddingLeft="10dp"
-                    android:background="@drawable/rounded_border_edittext"
-                    android:layout_height="50dp"></EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:textColor="@android:color/holo_orange_dark"
-                    android:layout_height="wrap_content"
-                    android:text="मो.नं -"></TextView>
-
-                <EditText
-                    android:id="@+id/t6"
-                    android:layout_width="230dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="86dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/rounded_border_edittext"
-                    android:hint="मो.नं "
-                    android:paddingLeft="10dp"
-                    android:textAlignment="center"></EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:textColor="@android:color/holo_orange_dark"
-                    android:layout_height="wrap_content"
-                    android:text="पत्ता :-"></TextView>
-
-                <EditText
-                    android:layout_width="230dp"
-                    android:layout_marginLeft="86dp"
-                    android:id="@+id/t7"
-                    android:layout_marginRight="10dp"
-                    android:textAlignment="center"
-                    android:hint="पत्ता"
-                    android:layout_marginBottom="20dp"
-                    android:paddingLeft="10dp"
-                    android:background="@drawable/rounded_border_edittext"
-                    android:layout_height="50dp"></EditText>
-            </LinearLayout>
 
 
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:textColor="@android:color/holo_orange_dark"
-                    android:layout_height="wrap_content"
-                    android:text="प्रभाग क्र. -"></TextView>
-
-                <EditText
-                    android:layout_width="230dp"
-                    android:layout_marginLeft="86dp"
-                    android:id="@+id/t8"
-                    android:layout_marginRight="10dp"
-                    android:textAlignment="center"
-                    android:hint="प्रभाग क्र."
-                    android:layout_marginBottom="20dp"
-                    android:paddingLeft="10dp"
-                    android:background="@drawable/rounded_border_edittext"
-                    android:layout_height="50dp"></EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:textColor="@android:color/holo_orange_dark"
-                    android:layout_height="wrap_content"
-                    android:text="पिन कोड -"></TextView>
-
-                <EditText
-                    android:layout_width="230dp"
-                    android:layout_marginLeft="86dp"
-                    android:id="@+id/t9"
-                    android:layout_marginRight="10dp"
-                    android:textAlignment="center"
-                    android:hint="पिन कोड"
-                    android:layout_marginBottom="20dp"
-                    android:paddingLeft="10dp"
-                    android:background="@drawable/rounded_border_edittext"
-                    android:layout_height="50dp"></EditText>
-            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"

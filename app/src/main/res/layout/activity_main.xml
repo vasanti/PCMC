@@ -50,4 +50,24 @@
       android:layout_centerHorizontal="true"
       android:layout_marginTop="20dp"></Button>
 
+
+   <Button
+       android:layout_width="wrap_content"
+       android:id="@+id/storageR"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="190dp"
+       android:layout_height="wrap_content"
+      android:text="Please grant STORAGE_PERMISSION"
+       android:layout_below="@+id/login"
+       android:onClick="storage"
+       ></Button>
+   <Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_centerHorizontal="true"
+       android:layout_below="@id/storageR"
+       android:text="Please grant CAMERA_PERMISSION"
+       android:onClick="camera"
+       ></Button>
+
 </RelativeLayout>

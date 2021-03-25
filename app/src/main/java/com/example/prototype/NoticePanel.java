@@ -28,35 +28,46 @@ public class NoticePanel extends AppCompatActivity {
 
     }
 
+
     public void n1(View view) {
        // Toast.makeText(NoticePanel.this,"Notice One",Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(),NoticeOne.class);
-        startActivity(intent);
+        Intent intent1 = new Intent(getApplicationContext(),NoticeOne.class);
+        startActivity(intent1);
     }
 
     public void n2(View view) {
         //Toast.makeText(NoticePanel.this,"Notice  2",Toast.LENGTH_SHORT).show();
-        Intent intent1 = new Intent(getApplicationContext(),NoticeSecond.class);
-        startActivity(intent1);
+        Intent intent2 = new Intent(getApplicationContext(),NoticeSecond.class);
+        startActivity(intent2);
     }
 
     public void n3(View view) {
         //Toast.makeText(NoticePanel.this,"Notice  3",Toast.LENGTH_SHORT).show();
-        Intent intent2 = new Intent(getApplicationContext(),NoticeThree.class);
-        startActivity(intent2);
+        Intent intent3 = new Intent(getApplicationContext(),NoticeThree.class);
+        startActivity(intent3);
     }
     public void n4(View view) {
         //Toast.makeText(NoticePanel.this,"Notice  4",Toast.LENGTH_SHORT).show();
-        Intent intent3 = new Intent(getApplicationContext(),NoticeFour.class);
-        startActivity(intent3);
+        Intent intent4 = new Intent(getApplicationContext(),NoticeFour.class);
+        startActivity(intent4);
     }
     public void n5(View view) {
-        Toast.makeText(NoticePanel.this,"Notice  5",Toast.LENGTH_SHORT).show();
+
+        Intent intent5 = new Intent(getApplicationContext(),NoticeFive.class);
+        startActivity(intent5);
+       //Toast.makeText(NoticePanel.this,"Notice  5",Toast.LENGTH_SHORT).show();
     }
     public void exit(View view) {
-        Toast.makeText(NoticePanel.this,"Notice  6",Toast.LENGTH_SHORT).show();
+        finish();
     }
     public void Logout(View view) {
-        Toast.makeText(NoticePanel.this,"Notice  7",Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    public void n6(View view) {
+
+        Intent intent6 = new Intent(getApplicationContext(),NoticeSix.class);
+        startActivity(intent6);
+        //Toast.makeText(NoticePanel.this,"Notice  6",Toast.LENGTH_SHORT).show();
     }
 }

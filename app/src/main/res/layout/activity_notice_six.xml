@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NoticeFive">
+    tools:context=".NoticeSix">
 
 
     <ScrollView
@@ -21,14 +21,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="FIR"
+                android:text="Evacuation Notice "
                 android:textAlignment="center"
                 android:background="@android:color/holo_red_dark"
                 android:textColor="@color/white"
                 android:layout_marginBottom="30dp"
                 android:textSize="25dp"
                 ></TextView>
-
 
 
             <LinearLayout
@@ -44,18 +43,20 @@
                     android:text="जा.क्र. बीपी/प्र.क्र"></TextView>
 
                 <EditText
-                    android:id="@+id/t1"
                     android:layout_width="260dp"
-                    android:layout_height="50dp"
                     android:layout_marginLeft="14dp"
+                    android:id="@+id/t1"
+                    android:textAlignment="center"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/rounded_border_edittext"
-                    android:paddingLeft="10dp"
                     android:text="जा.क्र. बीपी / ? / प्र.क्र. ? / ? / २०२०"
-                    android:textAlignment="center"></EditText>
+                    android:layout_marginBottom="15dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/rounded_border_edittext"
+                    android:layout_height="50dp"></EditText>
 
             </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -70,50 +71,16 @@
                     android:text="दिनांक -"></TextView>
 
                 <EditText
-                    android:id="@+id/t2"
                     android:layout_width="260dp"
-                    android:layout_height="50dp"
                     android:layout_marginLeft="64dp"
+                    android:id="@+id/t2"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/rounded_border_edittext"
                     android:hint="दिनांक"
-                    android:paddingLeft="10dp"
-                    android:textAlignment="center"></EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_orange_dark"
-                    android:text="पोलिस निरीक्षक नाव - "></TextView>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/t3"
-                    android:layout_width="260dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="74dp"
-                    android:layout_marginRight="10dp"
+                    android:textAlignment="center"
                     android:layout_marginBottom="15dp"
-                    android:background="@drawable/rounded_border_edittext"
-                    android:hint="- ?  पोलिस स्टेशन"
                     android:paddingLeft="10dp"
-                    android:textAlignment="center"></EditText>
+                    android:background="@drawable/rounded_border_edittext"
+                    android:layout_height="50dp"></EditText>
             </LinearLayout>
 
 
@@ -125,11 +92,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/holo_orange_dark"
-                    android:text="पदनिर्देशित अधिकारी तथा उप अभियंता  - "></TextView>
+                    android:text="इकडील नोटीस - "></TextView>
 
+                <EditText
+                    android:layout_width="260dp"
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/t3"
+                    android:layout_marginRight="10dp"
+                    android:textAlignment="center"
+                    android:hint="क्र. बीपी/बोपखेल/प्र.क्र.०४/०६/२०२० "
+                    android:layout_marginBottom="15dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/rounded_border_edittext"
+                    android:layout_height="50dp"></EditText>
             </LinearLayout>
 
             <LinearLayout
@@ -137,13 +114,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@android:color/holo_orange_dark"
+                    android:layout_height="wrap_content"
+                    android:text="गाव -"></TextView>
+
                 <EditText
                     android:layout_width="260dp"
-                    android:layout_marginLeft="72dp"
+                    android:layout_marginLeft="78dp"
                     android:id="@+id/t4"
                     android:layout_marginRight="10dp"
                     android:textAlignment="center"
-                    android:text="श्री. हेमंत प्रभाकर देसाई"
+                    android:hint="गाव"
                     android:layout_marginBottom="15dp"
                     android:paddingLeft="10dp"
                     android:background="@drawable/rounded_border_edittext"
@@ -158,17 +142,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:layout_height="wrap_content"
                     android:textColor="@android:color/holo_orange_dark"
-                    android:text="वय -"></TextView>
+                    android:layout_height="wrap_content"
+                    android:text="मोजे -"></TextView>
 
                 <EditText
                     android:layout_width="260dp"
-                    android:layout_marginLeft="64dp"
+                    android:layout_marginLeft="80dp"
                     android:id="@+id/t5"
                     android:layout_marginRight="10dp"
-                    android:hint="वय"
                     android:textAlignment="center"
+                    android:hint="मोजे"
                     android:layout_marginBottom="15dp"
                     android:paddingLeft="10dp"
                     android:background="@drawable/rounded_border_edittext"
@@ -185,48 +169,22 @@
                     android:layout_marginLeft="15dp"
                     android:textColor="@android:color/holo_orange_dark"
                     android:layout_height="wrap_content"
-                    android:text="मो.नं -"></TextView>
+                    android:text="स.नं.-"></TextView>
 
                 <EditText
+                    android:layout_width="260dp"
+                    android:layout_marginLeft="78dp"
                     android:id="@+id/t6"
-                    android:layout_width="230dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="86dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/rounded_border_edittext"
-                    android:hint="मो.नं "
-                    android:paddingLeft="10dp"
-                    android:textAlignment="center"></EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:textColor="@android:color/holo_orange_dark"
-                    android:layout_height="wrap_content"
-                    android:text="पत्ता :-"></TextView>
-
-                <EditText
-                    android:layout_width="230dp"
-                    android:layout_marginLeft="86dp"
-                    android:id="@+id/t7"
                     android:layout_marginRight="10dp"
                     android:textAlignment="center"
-                    android:hint="पत्ता"
-                    android:layout_marginBottom="20dp"
+                    android:hint="स.नं."
+                    android:layout_marginBottom="15dp"
                     android:paddingLeft="10dp"
                     android:background="@drawable/rounded_border_edittext"
                     android:layout_height="50dp"></EditText>
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -235,21 +193,51 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:textColor="@android:color/holo_orange_dark"
                     android:layout_height="wrap_content"
-                    android:text="प्रभाग क्र. -"></TextView>
+                    android:textColor="@android:color/holo_orange_dark"
+                    android:text="सूचना पोहोचविल्यापासून -"></TextView>
 
                 <EditText
-                    android:layout_width="230dp"
-                    android:layout_marginLeft="86dp"
+                    android:layout_width="50dp"
+                    android:layout_marginLeft="14dp"
+                    android:id="@+id/t7"
+                    android:textAlignment="center"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/rounded_border_edittext"
+                    android:layout_height="50dp"></EditText>
+
+                <Spinner
+                    android:layout_width="160dp"
+                    android:layout_marginLeft="5dp"
                     android:id="@+id/t8"
                     android:layout_marginRight="10dp"
                     android:textAlignment="center"
-                    android:hint="प्रभाग क्र."
                     android:layout_marginBottom="20dp"
                     android:paddingLeft="10dp"
                     android:background="@drawable/rounded_border_edittext"
-                    android:layout_height="50dp"></EditText>
+                    android:layout_height="50dp"></Spinner>
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@android:color/holo_orange_dark"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginBottom="10dp"
+                    android:text="अंदाजे मोजमाप -"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -262,20 +250,21 @@
                     android:layout_marginLeft="15dp"
                     android:textColor="@android:color/holo_orange_dark"
                     android:layout_height="wrap_content"
-                    android:text="पिन कोड -"></TextView>
+                    android:text="क्षेत्रिय कार्यालय -"></TextView>
 
-                <EditText
+                <Spinner
                     android:layout_width="230dp"
-                    android:layout_marginLeft="86dp"
+                    android:layout_marginLeft="52dp"
                     android:id="@+id/t9"
                     android:layout_marginRight="10dp"
                     android:textAlignment="center"
-                    android:hint="पिन कोड"
                     android:layout_marginBottom="20dp"
                     android:paddingLeft="10dp"
                     android:background="@drawable/rounded_border_edittext"
-                    android:layout_height="50dp"></EditText>
+                    android:layout_height="50dp"></Spinner>
             </LinearLayout>
+
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -306,7 +295,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/holo_green_dark"
                     android:id="@+id/back"
-                    android:text="Back"></Button>
+                    android:text="Exit"></Button>
             </LinearLayout>
 
         </LinearLayout>
